@@ -16,4 +16,28 @@ public class CommandRun {
         this.commands = new ArrayList<>();
         this.success = false;
     }
+
+    public void addCommand(CommandAPICommandBase command) {
+        this.commands.add(command);
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public CommandResult buildResult() {
+        return new CommandResult();
+    }
+
+    public boolean getSuccess() {
+        return this.success;
+    }
+
+    public CommandAPICommandBase getCommand() {
+
+    }
+
+    public CommandAPICommandHandler getCommandHandler() {
+        return this.commandHandler;
+    }
 }
