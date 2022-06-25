@@ -16,5 +16,4 @@ public abstract class CommandAPICommandBase extends CommandAPICommandPart {
         this.permissionRequest = permissionRequest;
     }
 
-    
 }

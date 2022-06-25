@@ -1,6 +1,7 @@
 package net.jandie1505.consolecommandapi.enums;
 
-public enum ArgumentType {
+public enum CommandAPIOptionType {
+    SUBCOMMAND,
     INTEGER,
     LONG,
     DOUBLE,
