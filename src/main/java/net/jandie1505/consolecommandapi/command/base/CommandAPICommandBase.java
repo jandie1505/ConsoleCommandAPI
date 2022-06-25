@@ -7,13 +7,20 @@ public abstract class CommandAPICommandBase extends CommandAPICommandPart {
     protected final CommandAPICommandExecutor commandExecutor;
     protected final CommandAPICommandExecutor noPermissionExecutor;
     protected final CommandAPIPermissionRequest permissionRequest;
-    protected final CommandAPICommandOption nextOption;
+    protected final CommandAPIOption nextOption;
 
-    public CommandAPICommandBase(CommandAPICommandExecutor commandExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest permissionRequest, CommandAPICommandOption commandOption) {
+    public CommandAPICommandBase(CommandAPICommandExecutor commandExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest permissionRequest, CommandAPIOption commandOption) {
         this.nextOption = commandOption;
         this.commandExecutor = commandExecutor;
         this.noPermissionExecutor = noPermissionExecutor;
         this.permissionRequest = permissionRequest;
     }
 
+    public void onCommand(String[] cmd, int section) {
+        if(this.permissionRequest.hasPermission()) {
+
+        } else {
+            this.noPermissionExecutor.onCommand();
+        }
+    }
 }

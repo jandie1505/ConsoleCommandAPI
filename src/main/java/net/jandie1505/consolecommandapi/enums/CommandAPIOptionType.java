@@ -4,8 +4,10 @@ public enum CommandAPIOptionType {
     SUBCOMMAND,
     INTEGER,
     LONG,
+    FLOAT,
     DOUBLE,
     BOOLEAN,
     CHAR,
-    STRING;
+    STRING,
+    EXTENDED_STRING;
 }
