@@ -1,6 +1,6 @@
-package net.jandie1505.consolecommandapi.run;
+package net.jandie1505.consolecommandapi.result;
 
-public abstract class CommandAPIResultValue {
+public abstract class CommandAPIOptionResult {
 
     public abstract Integer getAsInteger();
 

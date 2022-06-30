@@ -1,9 +1,9 @@
-package net.jandie1505.consolecommandapi;
+package net.jandie1505.consolecommandapi.command;
 
-import net.jandie1505.consolecommandapi.command.commands.CommandAPICommand;
+import net.jandie1505.consolecommandapi.command.CommandAPICommand;
 import net.jandie1505.consolecommandapi.executors.CommandAPICommandExecutor;
 import net.jandie1505.consolecommandapi.executors.CommandAPIPermissionRequest;
-import net.jandie1505.consolecommandapi.run.CommandRun;
+import net.jandie1505.consolecommandapi.result.CommandAPICommandResult;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +11,13 @@ import java.util.Map;
 public class CommandAPICommandHandler {
 
     private final Map<String, CommandAPICommand> commands;
-    private final CommandAPICommandExecutor wrongSyntaxExecutor;
+    private final CommandAPICommandExecutor unsuccessfulCommandExecutor;
     private final CommandAPICommandExecutor noPermissionExecutor;
     private final CommandAPIPermissionRequest globalPermissionRequest;
 
-    public CommandAPICommandHandler(Map<String, CommandAPICommand> commands, CommandAPICommandExecutor wrongSyntaxExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest globalPermissionRequest) {
+    public CommandAPICommandHandler(Map<String, CommandAPICommand> commands, CommandAPICommandExecutor unsuccessfulCommandExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest globalPermissionRequest) {
         this.commands = new HashMap<>(commands);
-        this.wrongSyntaxExecutor = wrongSyntaxExecutor;
+        this.unsuccessfulCommandExecutor = unsuccessfulCommandExecutor;
         this.noPermissionExecutor = noPermissionExecutor;
         this.globalPermissionRequest = globalPermissionRequest;
     }
@@ -26,17 +26,26 @@ public class CommandAPICommandHandler {
         if(this.globalPermissionRequest.hasPermission()) {
 
             if(command.length >= 1) {
+
+
                 for(String string : this.getCommands().keySet()) {
+
                     if(command[0].equalsIgnoreCase(string)) {
-                        break;
+                        this.commands.get(string).onCommand(command, 0, new CommandAPICommandRun());
+
+                        return;
                     }
+
                 }
+
+                this.unsuccessfulCommandExecutor.onCommand(new CommandAPICommandResult());
+
             } else {
-                this.wrongSyntaxExecutor.onCommand();
+                this.unsuccessfulCommandExecutor.onCommand(new CommandAPICommandResult());
             }
 
         } else {
-            this.noPermissionExecutor.onCommand();
+            this.noPermissionExecutor.onCommand(new CommandAPICommandResult());
         }
     }
 

@@ -1,7 +1,7 @@
 package net.jandie1505.consolecommandapi.executors;
 
-import net.jandie1505.consolecommandapi.run.CommandResult;
+import net.jandie1505.consolecommandapi.result.CommandAPICommandResult;
 
 public interface CommandAPICommandExecutor {
-    void onCommand(CommandResult result);
+    void onCommand(CommandAPICommandResult result);
 }
