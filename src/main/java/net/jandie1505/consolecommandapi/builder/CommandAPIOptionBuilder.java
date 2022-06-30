@@ -42,7 +42,7 @@ public class CommandAPIOptionBuilder {
         } else if(this.optionType == CommandAPIOptionType.CHARACTER) {
             return new CommandAPICharacterOption(this.required, this.nextOption);
         } else if(this.optionType == CommandAPIOptionType.EXTENDED_STRING) {
-            return null;
+            return new CommandAPIExtendedStringOption(this.required);
         } else {
             throw new IllegalArgumentException("OptionType not found");
         }

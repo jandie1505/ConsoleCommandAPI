@@ -18,17 +18,20 @@ public abstract class CommandAPIOption {
     public abstract CommandAPIOptionType getType();
 
     public CommandAPICommandRun handleOption(String[] cmd, int section, CommandAPICommandRun commandRun) {
+        if(cmd.length >= section) {
 
-        CommandAPIOptionResult optionResult = getResult(cmd[section]);
+            CommandAPIOptionResult optionResult = getResult(cmd[section]);
 
-        if(optionResult != null) {
-            commandRun.addOption(optionResult);
-        } else {
-            return commandRun;
-        }
+            if(optionResult != null) {
+                commandRun.addOption(optionResult);
+            } else {
+                return commandRun;
+            }
 
-        if(this.getNextOption() != null) {
-            commandRun = this.getNextOption().handleOption(cmd, section + 1, commandRun);
+            if(this.getNextOption() != null) {
+                commandRun = this.getNextOption().handleOption(cmd, section + 1, commandRun);
+            }
+
         }
 
         return commandRun;
