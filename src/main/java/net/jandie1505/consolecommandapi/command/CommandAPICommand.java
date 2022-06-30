@@ -6,6 +6,7 @@ import net.jandie1505.consolecommandapi.result.CommandAPICommandResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class CommandAPICommand {
     protected final CommandAPICommandExecutor commandExecutor;
@@ -16,12 +17,15 @@ public class CommandAPICommand {
     protected final CommandAPIOption nextOption;
 
     public CommandAPICommand(CommandAPICommandExecutor commandExecutor, CommandAPICommandExecutor unsuccessfulCommandExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest permissionRequest, Map<String, CommandAPICommand> subcommands, CommandAPIOption commandOption) {
+
         this.subcommands = Map.copyOf(subcommands);
         this.nextOption = commandOption;
-        this.commandExecutor = commandExecutor;
-        this.unsuccessfulExecutor = unsuccessfulCommandExecutor;
-        this.noPermissionExecutor = noPermissionExecutor;
-        this.permissionRequest = permissionRequest;
+
+        this.commandExecutor = Objects.requireNonNullElseGet(commandExecutor, () -> result -> {});
+        this.unsuccessfulExecutor = Objects.requireNonNullElseGet(unsuccessfulCommandExecutor, () -> result -> {});
+        this.noPermissionExecutor = Objects.requireNonNullElseGet(noPermissionExecutor, () -> result -> {});
+        this.permissionRequest = Objects.requireNonNullElseGet(permissionRequest, () -> result -> false);
+
     }
 
     public void onCommand(String[] cmd, int section, CommandAPICommandRun commandRun) {

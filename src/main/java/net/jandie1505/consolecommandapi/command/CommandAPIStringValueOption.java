@@ -14,7 +14,9 @@ public class CommandAPIStringValueOption extends CommandAPIOption {
 
         commandRun.addOption(new CommandAPIStringOptionResult(cmd[section]));
 
-        commandRun = this.getNextOption().handleOption(cmd, section + 1, commandRun);
+        if(this.getNextOption() != null) {
+            commandRun = this.getNextOption().handleOption(cmd, section + 1, commandRun);
+        }
 
         return commandRun;
     }

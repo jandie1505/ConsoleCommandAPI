@@ -8,6 +8,7 @@ import net.jandie1505.consolecommandapi.sender.CommandAPICommandSender;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CommandAPICommandHandler {
 
@@ -18,9 +19,10 @@ public class CommandAPICommandHandler {
 
     public CommandAPICommandHandler(CommandAPICommandExecutor unsuccessfulCommandExecutor, CommandAPICommandExecutor noPermissionExecutor, CommandAPIPermissionRequest globalPermissionRequest) {
         this.commands = new HashMap<>();
-        this.unsuccessfulCommandExecutor = unsuccessfulCommandExecutor;
-        this.noPermissionExecutor = noPermissionExecutor;
-        this.globalPermissionRequest = globalPermissionRequest;
+
+        this.unsuccessfulCommandExecutor = Objects.requireNonNullElseGet(unsuccessfulCommandExecutor, () -> result -> {});
+        this.noPermissionExecutor = Objects.requireNonNullElseGet(noPermissionExecutor, () -> result -> {});
+        this.globalPermissionRequest = Objects.requireNonNullElseGet(globalPermissionRequest, () -> result -> false);
     }
 
     public void onCommand(CommandAPICommandSender sender, String[] command) {
