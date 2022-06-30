@@ -22,8 +22,12 @@ public class CommandAPIOptionBuilder {
     }
 
     public CommandAPIOptionBuilder setNextOption(CommandAPIOption option) {
-        this.nextOption = option;
-        return this;
+        if(this.optionType != CommandAPIOptionType.EXTENDED_STRING) {
+            this.nextOption = option;
+            return this;
+        } else {
+            throw new IllegalArgumentException("An EXTENDED_STRING cannot have a next option");
+        }
     }
 
     public CommandAPIOption build() {
