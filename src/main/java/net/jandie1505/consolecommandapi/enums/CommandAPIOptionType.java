@@ -7,5 +7,6 @@ public enum CommandAPIOptionType {
     DOUBLE,
     BOOLEAN,
     CHARACTER,
-    STRING;
+    STRING,
+    EXTENDED_STRING;
 }
