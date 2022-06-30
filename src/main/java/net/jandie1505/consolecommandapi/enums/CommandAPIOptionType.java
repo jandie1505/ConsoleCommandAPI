@@ -6,7 +6,6 @@ public enum CommandAPIOptionType {
     FLOAT,
     DOUBLE,
     BOOLEAN,
-    CHAR,
-    STRING,
-    EXTENDED_STRING;
+    CHARACTER,
+    STRING;
 }

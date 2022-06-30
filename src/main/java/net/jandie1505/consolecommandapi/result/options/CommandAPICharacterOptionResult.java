@@ -3,11 +3,11 @@ package net.jandie1505.consolecommandapi.result.options;
 import net.jandie1505.consolecommandapi.enums.CommandAPIOptionType;
 import net.jandie1505.consolecommandapi.result.CommandAPIOptionResult;
 
-public class CommandAPIStringOptionResult extends CommandAPIOptionResult {
+public class CommandAPICharacterOptionResult extends CommandAPIOptionResult {
 
-    private final String value;
+    private final char value;
 
-    public CommandAPIStringOptionResult(String value) {
+    public CommandAPICharacterOptionResult(char value) {
         this.value = value;
     }
 
@@ -38,16 +38,16 @@ public class CommandAPIStringOptionResult extends CommandAPIOptionResult {
 
     @Override
     public Character getAsChar() {
-        return null;
-    }
-
-    @Override
-    public String getAsString() {
         return this.value;
     }
 
     @Override
+    public String getAsString() {
+        return String.valueOf(this.value);
+    }
+
+    @Override
     public CommandAPIOptionType getType() {
-        return CommandAPIOptionType.STRING;
+        return CommandAPIOptionType.CHARACTER;
     }
 }

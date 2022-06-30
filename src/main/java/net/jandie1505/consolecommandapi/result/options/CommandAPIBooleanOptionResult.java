@@ -3,11 +3,11 @@ package net.jandie1505.consolecommandapi.result.options;
 import net.jandie1505.consolecommandapi.enums.CommandAPIOptionType;
 import net.jandie1505.consolecommandapi.result.CommandAPIOptionResult;
 
-public class CommandAPIStringOptionResult extends CommandAPIOptionResult {
+public class CommandAPIBooleanOptionResult extends CommandAPIOptionResult {
 
-    private final String value;
+    private final boolean value;
 
-    public CommandAPIStringOptionResult(String value) {
+    public CommandAPIBooleanOptionResult(boolean value) {
         this.value = value;
     }
 
@@ -33,7 +33,7 @@ public class CommandAPIStringOptionResult extends CommandAPIOptionResult {
 
     @Override
     public Boolean getAsBoolean() {
-        return null;
+        return this.value;
     }
 
     @Override
@@ -43,11 +43,11 @@ public class CommandAPIStringOptionResult extends CommandAPIOptionResult {
 
     @Override
     public String getAsString() {
-        return this.value;
+        return String.valueOf(this.value);
     }
 
     @Override
     public CommandAPIOptionType getType() {
-        return CommandAPIOptionType.STRING;
+        return CommandAPIOptionType.BOOLEAN;
     }
 }

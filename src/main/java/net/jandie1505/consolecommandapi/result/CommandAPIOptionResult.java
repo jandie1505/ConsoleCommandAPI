@@ -1,5 +1,7 @@
 package net.jandie1505.consolecommandapi.result;
 
+import net.jandie1505.consolecommandapi.enums.CommandAPIOptionType;
+
 public abstract class CommandAPIOptionResult {
 
     public abstract Integer getAsInteger();
@@ -16,6 +18,5 @@ public abstract class CommandAPIOptionResult {
 
     public abstract String getAsString();
 
-    public abstract String getAsExtendedString();
-
+    public abstract CommandAPIOptionType getType();
 }

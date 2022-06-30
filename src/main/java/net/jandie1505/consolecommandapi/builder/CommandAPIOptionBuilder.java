@@ -1,7 +1,7 @@
 package net.jandie1505.consolecommandapi.builder;
 
 import net.jandie1505.consolecommandapi.command.CommandAPIOption;
-import net.jandie1505.consolecommandapi.command.CommandAPIStringValueOption;
+import net.jandie1505.consolecommandapi.command.options.CommandAPIStringOption;
 import net.jandie1505.consolecommandapi.enums.CommandAPIOptionType;
 
 public class CommandAPIOptionBuilder {
@@ -28,7 +28,7 @@ public class CommandAPIOptionBuilder {
 
     public CommandAPIOption build() {
         if(this.optionType == CommandAPIOptionType.STRING) {
-            return new CommandAPIStringValueOption(this.required, this.nextOption);
+            return new CommandAPIStringOption(this.required, this.nextOption);
         } else {
             throw new IllegalArgumentException("OptionType not found");
         }
