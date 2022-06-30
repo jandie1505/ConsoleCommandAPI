@@ -31,37 +31,33 @@ public class CommandAPICommand {
     public void onCommand(String[] cmd, int section, CommandAPICommandRun commandRun) {
         if(this.permissionRequest.hasPermission(commandRun.buildResult())) {
 
-            if(cmd.length >= section + 2) {
+            boolean subcommand = false;
+            for(String command : this.subcommands.keySet()) {
 
-                boolean subcommand = false;
-                for(String command : this.subcommands.keySet()) {
+                if(cmd[section].equalsIgnoreCase(command)) {
 
-                    if(cmd[section].equalsIgnoreCase(command)) {
+                    subcommand = true;
+                    this.subcommands.get(command).onCommand(cmd, section + 1, commandRun);
 
-                        subcommand = true;
-                        this.subcommands.get(command).onCommand(cmd, section + 1, commandRun);
-
-                        break;
-                    }
-
+                    break;
                 }
 
-                if(!subcommand) {
-                    if(this.nextOption != null) {
-                        commandRun = this.nextOption.handleOption(cmd, section + 1, commandRun);
+            }
 
-                        if(commandRun.isSuccessful()) {
-                            this.commandExecutor.onCommand(commandRun.buildResult());
-                        } else {
-                            this.unsuccessfulExecutor.onCommand(commandRun.buildResult());
-                        }
-                    } else {
+            if(!subcommand) {
+                if(this.nextOption != null) {
+                    commandRun.setSuccess(true);
+                    commandRun = this.nextOption.handleOption(cmd, section + 1, commandRun);
+
+                    if(commandRun.isSuccessful()) {
                         this.commandExecutor.onCommand(commandRun.buildResult());
+                    } else {
+                        this.unsuccessfulExecutor.onCommand(commandRun.buildResult());
                     }
+                } else {
+                    commandRun.setSuccess(true);
+                    this.commandExecutor.onCommand(commandRun.buildResult());
                 }
-
-            } else {
-                this.commandExecutor.onCommand(commandRun.buildResult());
             }
 
         } else {

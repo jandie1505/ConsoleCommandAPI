@@ -14,7 +14,7 @@ public class CommandAPIExtendedStringOption extends CommandAPIOption {
 
     @Override
     public CommandAPICommandRun handleOption(String[] cmd, int section, CommandAPICommandRun commandRun) {
-        if(cmd.length >= section) {
+        if(cmd.length >= section + 1) {
 
             String extendedString = "";
             for(int i = section; i < cmd.length; i++) {
