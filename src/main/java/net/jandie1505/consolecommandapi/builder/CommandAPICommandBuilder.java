@@ -41,6 +41,18 @@ public class CommandAPICommandBuilder {
         return this;
     }
 
+    public CommandAPICommandBuilder fromIntegratedCommandExecutor(CommandAPIIntegratedCommandExecutor executor) {
+        this.commandExecutor = executor.getExecutor();
+        this.unsuccessfulExecutor = executor.getUnsuccessfulExecutor();
+        this.noPermissionExecutor = executor.getNoPermissionExecutor();
+        return this;
+    }
+
+    public CommandAPICommandBuilder setPermissionRequest(CommandAPIPermissionRequest permissionRequest) {
+        this.permissionRequest = permissionRequest;
+        return this;
+    }
+
     public CommandAPICommandBuilder withSubcommand(String name, CommandAPICommand command) {
         this.subcommandMap.put(name, command);
         return this;
