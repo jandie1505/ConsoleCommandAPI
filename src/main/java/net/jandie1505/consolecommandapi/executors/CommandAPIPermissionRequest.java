@@ -1,6 +1,7 @@
 package net.jandie1505.consolecommandapi.executors;
 
 import net.jandie1505.consolecommandapi.result.CommandAPICommandResult;
+import net.jandie1505.consolecommandapi.utilities.permissionlevels.CommandAPIPermissionLevelCommandSender;
 
 public interface CommandAPIPermissionRequest {
 
@@ -15,6 +16,6 @@ public interface CommandAPIPermissionRequest {
     }
 
     static CommandAPIPermissionRequest requirePermissionLevel(int level) {
-        return result -> result.getSender().getPermissionLevel() >= level;
+        return result -> (result.getSender() instanceof CommandAPIPermissionLevelCommandSender && ((CommandAPIPermissionLevelCommandSender) result.getSender()).getPermissionLevel() >= level);
     }
 }
