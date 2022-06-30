@@ -25,7 +25,7 @@ public class CommandAPICommand {
     }
 
     public void onCommand(String[] cmd, int section, CommandAPICommandRun commandRun) {
-        if(this.permissionRequest.hasPermission()) {
+        if(this.permissionRequest.hasPermission(commandRun.buildResult())) {
 
             if(cmd.length >= section + 2) {
 
@@ -49,7 +49,7 @@ public class CommandAPICommand {
                         if(commandRun.isSuccessful()) {
                             this.commandExecutor.onCommand(commandRun.buildResult());
                         } else {
-                            this.unsuccessfulExecutor.onCommand(new CommandAPICommandResult());
+                            this.unsuccessfulExecutor.onCommand(commandRun.buildResult());
                         }
                     } else {
                         this.commandExecutor.onCommand(commandRun.buildResult());
@@ -57,11 +57,11 @@ public class CommandAPICommand {
                 }
 
             } else {
-                this.commandExecutor.onCommand(new CommandAPICommandResult());
+                this.commandExecutor.onCommand(commandRun.buildResult());
             }
 
         } else {
-            this.noPermissionExecutor.onCommand(new CommandAPICommandResult());
+            this.noPermissionExecutor.onCommand(commandRun.buildResult());
         }
     }
 }

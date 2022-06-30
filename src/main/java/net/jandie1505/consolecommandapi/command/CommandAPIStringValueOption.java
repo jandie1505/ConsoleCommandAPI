@@ -21,8 +21,6 @@ public class CommandAPIStringValueOption extends CommandAPIOption {
 
     @Override
     public CommandAPIOptionType getType() {
-        return null;
+        return CommandAPIOptionType.STRING;
     }
-
-
 }

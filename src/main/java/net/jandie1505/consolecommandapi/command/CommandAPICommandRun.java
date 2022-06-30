@@ -2,16 +2,19 @@ package net.jandie1505.consolecommandapi.command;
 
 import net.jandie1505.consolecommandapi.result.CommandAPICommandResult;
 import net.jandie1505.consolecommandapi.result.CommandAPIOptionResult;
+import net.jandie1505.consolecommandapi.sender.CommandAPICommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandAPICommandRun {
 
+    private final CommandAPICommandSender sender;
     private final List<CommandAPIOptionResult> options;
     private boolean success;
 
-    CommandAPICommandRun() {
+    CommandAPICommandRun(CommandAPICommandSender sender) {
+        this.sender = sender;
         this.options = new ArrayList<>();
         this.success = false;
     }
@@ -29,7 +32,7 @@ public class CommandAPICommandRun {
     // BUILD
 
     public CommandAPICommandResult buildResult() {
-        return new CommandAPICommandResult(this.options);
+        return new CommandAPICommandResult(sender, this.success, this.options);
     }
 
     // GET
