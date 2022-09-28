@@ -34,12 +34,16 @@ public class CommandAPICommand {
             boolean subcommand = false;
             for(String command : this.subcommands.keySet()) {
 
-                if(cmd[section + 1].equalsIgnoreCase(command)) {
+                if(cmd.length > section + 1) {
 
-                    subcommand = true;
-                    this.subcommands.get(command).onCommand(cmd, section + 1, commandRun);
+                    if(cmd[section + 1].equalsIgnoreCase(command)) {
 
-                    break;
+                        subcommand = true;
+                        this.subcommands.get(command).onCommand(cmd, section + 1, commandRun);
+
+                        break;
+                    }
+
                 }
 
             }

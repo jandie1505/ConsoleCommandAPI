@@ -57,6 +57,6 @@ public class Test {
 
         System.out.println("------");
 
-        commandHandler.onCommand(new CommandAPICommandSender() {}, new String[]{"test"});
+        commandHandler.onCommand(new CommandAPICommandSender() {}, new String[]{"test","test2"});
     }
 }
