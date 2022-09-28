@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="consolecommandapi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/consolecommandapi_jar</output-path>
+    <root id="archive" name="consolecommandapi.jar">
+      <element id="module-output" name="consolecommandapi" />
+    </root>
+  </artifact>
+</component>

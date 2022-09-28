@@ -34,6 +34,12 @@ public class Test {
                             System.out.println("Ich habe keine Rechte");
                         })
                         .setPermissionRequest(CommandAPIPermissionRequest.alwaysSuccess())
+                        .withSubcommand("test2",
+                                new CommandAPICommandBuilder()
+                                        .executes(result -> System.out.println("hi"))
+                                        .setPermissionRequest(CommandAPIPermissionRequest.alwaysSuccess())
+                                        .build()
+                        )
                         /*.setOption(
                                 new CommandAPIOptionBuilder(CommandAPIOptionType.STRING)
                                         .setRequired(true)

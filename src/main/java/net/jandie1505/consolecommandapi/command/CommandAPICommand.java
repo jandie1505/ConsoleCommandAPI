@@ -34,7 +34,7 @@ public class CommandAPICommand {
             boolean subcommand = false;
             for(String command : this.subcommands.keySet()) {
 
-                if(cmd[section].equalsIgnoreCase(command)) {
+                if(cmd[section + 1].equalsIgnoreCase(command)) {
 
                     subcommand = true;
                     this.subcommands.get(command).onCommand(cmd, section + 1, commandRun);
